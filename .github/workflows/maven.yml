@@ -28,6 +28,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up JDK 17 & Restore Maven Cache
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Resolve Maven Dependencies
+      run: mvn dependency:resolve
+
     - name: Trivy Installation
       run: |            
         sudo apt-get update
